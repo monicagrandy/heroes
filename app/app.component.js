@@ -1,5 +1,4 @@
-// Components are the basic building blocks of Angular applications. A component controls portion of the screen — a view — through its associated template.
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', './dashboard.component', './hero.service', './heroes.component', 'angular2/router', './hero-detail.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -11,46 +10,65 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
-    var AppComponent, HEROES;
+    var core_1, dashboard_component_1, hero_service_1, heroes_component_1, router_1, hero_detail_component_1;
+    var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (dashboard_component_1_1) {
+                dashboard_component_1 = dashboard_component_1_1;
+            },
+            function (hero_service_1_1) {
+                hero_service_1 = hero_service_1_1;
+            },
+            function (heroes_component_1_1) {
+                heroes_component_1 = heroes_component_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
+            function (hero_detail_component_1_1) {
+                hero_detail_component_1 = hero_detail_component_1_1;
             }],
         execute: function() {
-            //tells Angular what template to use and how to create the component.
             AppComponent = (function () {
                 function AppComponent() {
-                    this.title = 'Tour of Heroes';
-                    this.heroes = HEROES;
+                    this.title = 'A Tour of Heroes';
                 }
-                AppComponent.prototype.onSelect = function (hero) { this.selectedHero = hero; };
                 AppComponent = __decorate([
                     core_1.Component({
-                        //selector specifies a simple CSS selector for an HTML element that represents the component.
                         selector: 'my-app',
-                        //The template specifies the component's companion template, written in an enhanced form of HTML that tells Angular how to render this component's view.
-                        template: "\n  <h1>{{title}}</h1>\n  <h2>My Heroes</h2>\n  <ul class=\"heroes\">\n     <li *ngFor=\"#hero of heroes\"\n     [class.selected]=\"hero===selectedHero\"\n      (click)=\"onSelect(hero)\">\n      <span class=\"badge\">{{hero.id}}</span> {{hero.name}}\n    </li>\n  </ul>\n  <div *ngIf=\"selectedHero\">\n  <h2>{{selectedHero.name}} details!</h2>\n  <div><label>id: </label>{{selectedHero.id}}</div>\n      <div>\n        <label>name: </label>\n        <input [(ngModel)]=\"selectedHero.name\" placeholder=\"name\"/>\n      </div>\n  </div>    \n  ",
-                        styles: ["\n  .selected {\n    background-color: #CFD8DC !important;\n    color: white;\n  }\n  .heroes {\n    margin: 0 0 2em 0;\n    list-style-type: none;\n    padding: 0;\n    width: 10em;\n  }\n  .heroes li {\n    cursor: pointer;\n    position: relative;\n    left: 0;\n    background-color: #EEE;\n    margin: .5em;\n    padding: .3em 0;\n    height: 1.6em;\n    border-radius: 4px;\n  }\n  .heroes li.selected:hover {\n    background-color: #BBD8DC !important;\n    color: white;\n  }\n  .heroes li:hover {\n    color: #607D8B;\n    background-color: #DDD;\n    left: .1em;\n  }\n  .heroes .text {\n    position: relative;\n    top: -3px;\n  }\n  .heroes .badge {\n    display: inline-block;\n    font-size: small;\n    color: white;\n    padding: 0.8em 0.7em 0 0.7em;\n    background-color: #607D8B;\n    line-height: 1em;\n    position: relative;\n    left: -1px;\n    top: -4px;\n    height: 1.8em;\n    margin-right: .8em;\n    border-radius: 4px 0 0 4px;\n  }\n "]
-                    }), 
+                        template: "\n  <h1>{{title}}</h1>\n  <nav>\n  <a [routerLink]=\"['Dashboard']\">Dashboard</a>\n  <a [routerLink]=\"['Heroes']\">Heroes</a>\n  </nav>\n  <router-outlet></router-outlet>\n  ",
+                        directives: [router_1.ROUTER_DIRECTIVES],
+                        providers: [router_1.ROUTER_PROVIDERS, hero_service_1.HeroService],
+                        styleUrls: ['app/app.component.css']
+                    }),
+                    router_1.RouteConfig([
+                        {
+                            path: '/heroes',
+                            name: 'Heroes',
+                            component: heroes_component_1.HeroesComponent
+                        },
+                        {
+                            path: '/dashboard',
+                            name: 'Dashboard',
+                            component: dashboard_component_1.DashboardComponent,
+                            //use as default homepage
+                            useAsDefault: true
+                        },
+                        {
+                            path: '/detail/:id',
+                            name: 'HeroDetail',
+                            component: hero_detail_component_1.HeroDetailComponent
+                        },
+                    ]), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
                 return AppComponent;
             }());
             exports_1("AppComponent", AppComponent);
-            HEROES = [
-                { "id": 11, "name": "Mr. Nice" },
-                { "id": 12, "name": "Narco" },
-                { "id": 13, "name": "Bombasto" },
-                { "id": 14, "name": "Celeritas" },
-                { "id": 15, "name": "Magneta" },
-                { "id": 16, "name": "RubberMan" },
-                { "id": 17, "name": "Dynama" },
-                { "id": 18, "name": "Dr IQ" },
-                { "id": 19, "name": "Magma" },
-                { "id": 20, "name": "Tornado" }
-            ];
         }
     }
 });
