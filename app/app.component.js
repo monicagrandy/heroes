@@ -1,0 +1,46 @@
+// Components are the basic building blocks of Angular applications. A component controls portion of the screen — a view — through its associated template.
+System.register(['angular2/core'], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
+    var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+    var __metadata = (this && this.__metadata) || function (k, v) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
+    var core_1;
+    var AppComponent;
+    return {
+        setters:[
+            function (core_1_1) {
+                core_1 = core_1_1;
+            }],
+        execute: function() {
+            //tells Angular what template to use and how to create the component.
+            AppComponent = (function () {
+                function AppComponent() {
+                    this.title = 'Tour of Heroes';
+                    this.hero = {
+                        id: 1,
+                        name: 'Windstorm'
+                    };
+                }
+                AppComponent = __decorate([
+                    core_1.Component({
+                        //selector specifies a simple CSS selector for an HTML element that represents the component.
+                        selector: 'my-app',
+                        //The template specifies the component's companion template, written in an enhanced form of HTML that tells Angular how to render this component's view.
+                        template: " \n    <h1>{{title}}</h1>\n    <h2>{{hero.name}} details!</h2>\n    <div><label>id: </label>{{hero.id}}</div>\n    <div><label>name: </label>{{hero.name}}</div> \n    "
+                    }), 
+                    __metadata('design:paramtypes', [])
+                ], AppComponent);
+                return AppComponent;
+            }());
+            exports_1("AppComponent", AppComponent);
+        }
+    }
+});
+//# sourceMappingURL=app.component.js.map
